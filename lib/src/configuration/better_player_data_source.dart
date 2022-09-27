@@ -104,6 +104,33 @@ class BetterPlayerDataSource {
                 (type == BetterPlayerDataSourceType.memory && bytes?.isNotEmpty == true),
             "Url can't be null in network or file data source | bytes can't be null when using memory data source");
 
+  ///Factory method to build asset data source which uses url as data source
+  ///Bytes parameter is not used in this data source.
+  factory BetterPlayerDataSource.asset(
+    String url, {
+    List<BetterPlayerSubtitlesSource>? subtitles,
+    bool? useAsmsSubtitles,
+    bool? useAsmsTracks,
+    Map<String, String>? qualities,
+    BetterPlayerCacheConfiguration? cacheConfiguration,
+    BetterPlayerNotificationConfiguration? notificationConfiguration,
+    Duration? overriddenDuration,
+    Widget? placeholder,
+  }) {
+    return BetterPlayerDataSource(
+      BetterPlayerDataSourceType.asset,
+      url,
+      subtitles: subtitles,
+      useAsmsSubtitles: useAsmsSubtitles,
+      useAsmsTracks: useAsmsTracks,
+      resolutions: qualities,
+      cacheConfiguration: cacheConfiguration,
+      notificationConfiguration: notificationConfiguration,
+      overriddenDuration: overriddenDuration,
+      placeholder: placeholder,
+    );
+  }
+
   ///Factory method to build network data source which uses url as data source
   ///Bytes parameter is not used in this data source.
   factory BetterPlayerDataSource.network(
