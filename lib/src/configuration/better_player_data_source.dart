@@ -129,6 +129,7 @@ class BetterPlayerDataSource {
     return BetterPlayerDataSource(
       BetterPlayerDataSourceType.asset,
       url,
+      package: packageName,
       subtitles: subtitles,
       useAsmsSubtitles: useAsmsSubtitles,
       useAsmsTracks: useAsmsTracks,
