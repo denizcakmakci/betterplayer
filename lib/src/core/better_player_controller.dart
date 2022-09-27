@@ -414,6 +414,7 @@ class BetterPlayerController {
       case BetterPlayerDataSourceType.asset:
         await videoPlayerController?.setAssetDataSource(
           betterPlayerDataSource.url,
+          package: betterPlayerDataSource.package,
           showNotification: _betterPlayerDataSource?.notificationConfiguration?.showNotification,
           title: _betterPlayerDataSource?.notificationConfiguration?.title,
           author: _betterPlayerDataSource?.notificationConfiguration?.author,

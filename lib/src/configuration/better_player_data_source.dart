@@ -76,6 +76,13 @@ class BetterPlayerDataSource {
   ///platform.
   final BetterPlayerBufferingConfiguration bufferingConfiguration;
 
+  /// The name of the asset is given by the [dataSource] argument and must not be
+  /// null. The [package] argument must be non-null when the asset comes from a
+  /// package and null otherwise.
+  ///
+  /// Only set for [asset] videos. The package that the asset was loaded from.
+  final String? package;
+
   BetterPlayerDataSource(
     this.type,
     this.url, {
@@ -98,6 +105,7 @@ class BetterPlayerDataSource {
     this.drmConfiguration,
     this.placeholder,
     this.bufferingConfiguration = const BetterPlayerBufferingConfiguration(),
+    this.package,
   }) : assert(
             (type == BetterPlayerDataSourceType.network || type == BetterPlayerDataSourceType.file) ||
                 (type == BetterPlayerDataSourceType.asset) ||
@@ -108,6 +116,7 @@ class BetterPlayerDataSource {
   ///Bytes parameter is not used in this data source.
   factory BetterPlayerDataSource.asset(
     String url, {
+    String? packageName,
     List<BetterPlayerSubtitlesSource>? subtitles,
     bool? useAsmsSubtitles,
     bool? useAsmsTracks,
