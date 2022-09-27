@@ -41,6 +41,8 @@ class BetterPlayerPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
     private var pipRunnable: Runnable? = null
     override fun onAttachedToEngine(binding: FlutterPluginBinding) {
         val loader = FlutterLoader()
+        loader.startInitialization(binding.applicationContext)
+
         flutterState = FlutterState(
             binding.applicationContext,
             binding.binaryMessenger, object : KeyForAssetFn {
