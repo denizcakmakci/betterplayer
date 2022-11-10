@@ -238,10 +238,10 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
           break;
 
         case VideoEventType.play:
-          play();
+          value.isPip ? null : play();
           break;
         case VideoEventType.pause:
-          pause();
+          value.isPip ? null : pause();
           break;
         case VideoEventType.seek:
           seekTo(event.position);

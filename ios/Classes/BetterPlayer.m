@@ -536,10 +536,14 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
 
 - (void)setupPipController {
     if (@available(iOS 9.0, *)) {
+        [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
         [[AVAudioSession sharedInstance] setActive: YES error: nil];
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
         if (!_pipController && self._playerLayer && [AVPictureInPictureController isPictureInPictureSupported]) {
             _pipController = [[AVPictureInPictureController alloc] initWithPlayerLayer:self._playerLayer];
+            if (@available(iOS 14.2, *)) {
+               _pipController.canStartPictureInPictureAutomaticallyFromInline = YES;
+            }
             _pipController.delegate = self;
         }
     } else {
@@ -548,7 +552,7 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
 }
 
 - (void) enablePictureInPicture: (CGRect) frame{
-    [self disablePictureInPicture];
+    //[self disablePictureInPicture];
     [self usePlayerLayer:frame];
 }
 
@@ -568,16 +572,16 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
             _pipController = NULL;
         }
         [self setupPipController];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)),
-                       dispatch_get_main_queue(), ^{
-            [self setPictureInPicture:true];
-        });
+        // dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)),
+        //                dispatch_get_main_queue(), ^{
+        //     [self setPictureInPicture:true];
+        // });
     }
 }
 
 - (void)disablePictureInPicture
 {
-    [self setPictureInPicture:true];
+    //[self setPictureInPicture:true];
     if (__playerLayer){
         [self._playerLayer removeFromSuperlayer];
         self._playerLayer = nil;
@@ -590,7 +594,7 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
 
 #if TARGET_OS_IOS
 - (void)pictureInPictureControllerDidStopPictureInPicture:(AVPictureInPictureController *)pictureInPictureController  API_AVAILABLE(ios(9.0)){
-    [self disablePictureInPicture];
+    //[self disablePictureInPicture];
 }
 
 - (void)pictureInPictureControllerDidStartPictureInPicture:(AVPictureInPictureController *)pictureInPictureController  API_AVAILABLE(ios(9.0)){
