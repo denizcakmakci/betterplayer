@@ -565,8 +565,8 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
         UIViewController* vc = [[[UIApplication sharedApplication] keyWindow] rootViewController];
         self._playerLayer.frame = frame;
         self._playerLayer.needsDisplayOnBoundsChange = YES;
-        // self.drawsBackground = false
-        // self._playerLayer.backgroundColor = NSColor.clearColor().CGColor
+
+        self._playerLayer.backgroundColor = NSColor.clearColor().CGColor
         [self._playerLayer setMasksToBounds:YES]; 
 
         //  [self._playerLayer addObserver:self forKeyPath:readyForDisplayKeyPath options:NSKeyValueObservingOptionNew context:nil];
