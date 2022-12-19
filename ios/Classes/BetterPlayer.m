@@ -583,13 +583,13 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
 - (void)disablePictureInPicture
 {
     //[self setPictureInPicture:true];
-    if (__playerLayer){
+    
         [self._playerLayer removeFromSuperlayer];
         self._playerLayer = nil;
         if (_eventSink != nil) {
             _eventSink(@{@"event" : @"pipStop"});
         }
-    }
+    
 }
 #endif
 
